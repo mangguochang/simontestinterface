@@ -1,0 +1,109 @@
+swagger: "2.0"
+info:
+  description: "This is a Mir Service Demo Product, base on Spring Boot 2.0, Spring Cloud Finchley Version. Please modify this description when you use this demo"
+  version: "v1"
+  title: "Micro Service App"
+  contact:
+    email: "guoqiang.meng@pactera.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "127.0.0.1"
+basePath: "/v1"
+tags:
+  - name: "order"
+    description: "order create/update/delete"
+schemes:
+  - "http"
+paths:
+  /restful:
+    get:
+      tags:
+        - "restful"
+      summary: "get method restful"
+      description: ""
+      operationId: "getRestful"
+      produces:
+        - "application/json"
+        - "application/xml"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/RestResponse"
+        405:
+          description: "Invalid input"
+    post:
+      tags:
+        - "restful"
+      summary: "post method restful"
+      description: ""
+      operationId: "postRestful"
+      consumes:
+        - "application/json"
+        - application/xml
+      produces:
+        - "application/json"
+        - application/xml
+      parameters:
+        - in: "body"
+          name: "body"
+          description: ""
+          required: false
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Person"
+        405:
+          description: "Invalid input"
+definitions:
+  RestRequest:
+    type: "string"
+    xml:
+      name: "RestRequest"
+  Person:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      age:
+        type: "integer"
+      sex:
+        type: "string"
+    xml:
+      name: "person"
+  RestResponse:
+    type: "object"
+    properties:
+      data:
+        type: "object"
+      message:
+        type: "string"
+      shipDate:
+        type: "string"
+      status:
+        type: "boolean"
+        default: false
+    xml:
+      name: "RestResponse"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
